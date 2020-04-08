@@ -1,3 +1,10 @@
+title {
+    background-color: antiquewhite;
+}
+div {
+    background-color:cornflowerblue;
+    width: 300px;
+}
 h2{
     color:black;
     font-family: Arial, Helvetica, sans-serif;
@@ -10,17 +17,19 @@ table {
     border : 2px solid black;
     border-collapse: collapse ;
     text-align : center;
-    padding : 10px;
+    padding : 25px;
 }
 th,td {
     border : 2px solid black;
     font-family: 'Times New Roman', Times, serif;
+    padding : 15px;
     
 
 }
 th {
     background-color: grey;
-    font-size: 28px;
+    font-size: 26px;
     font-weight:bold;
+    
     
 }

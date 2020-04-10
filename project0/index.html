@@ -2,12 +2,88 @@
 <html>
     <head>
         <title>My Webpage</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+       
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        
+        <meta name = "viewport" content = "width=device-width,initial-scale =1.0">
+        <style>
+            a::before {
+                content: "\002a";
+                font-weight: bold;
+                color: rebeccapurple;
+                padding-right: 20px;
+            }
+            a {
+                color:pink;
+                font-weight: bold;
+            }
+
+
+            
+             @media(min-width:500px) { 
+                h1::before{
+                  content:  "It's my story"
+                }
+            }
+            @media(max-width:499px)    {
+                h1::before {
+                    content:"welcom!"
+
+                }
+            }
+
+            
+            h1 {
+                text-shadow: 3px 3px black;
+                text-align: center;
+
+            }
+            p{
+                font-size: 20px;
+                font-weight: bold;
+            }
+            
+                body {
+              background-image: url('new.jpg');
+              background-repeat: no-repeat;
+              background-attachment: fixed; 
+              background-size: 1450px 800px;
+              width:100%;
+              color:white;
+            }
+            ol {
+                font-size: 20px;
+                font-weight: bold;
+
+            }
+            
+       
+   
+        </style>
         
         
     </head>
     <body>
-        Hello, world!
-        <h2><a href = Myprofile.html>Aboutme</a></h2>
+        <!-- <div id = "example1"> -->
+        <h1></h1>
+        <p>Welcome to my page!</p>
+        <p>In this page I would tell you about my experiences!!</p>
+        
+        <!-- <img src = "C:\\Users\\HARIKA\\Desktop\\SAD\\project0\\Harika.png" class = "float-right" > -->
+        
+
+        <h2>Index</h2>
+       <ol>
+           <li>My Profile</li>
+           <li>About me</li>
+           <li>Foodie</li>
+       </ol>
+       <ul>
+        <h2><a href = "Myprofile.html">Profile</a></h2>
+        <h2><a href = "Studies.html">Education</a></h2>
+        <h2><a href = "favorites.html">Favorites</a></h2>
+        <h2><a href = "presentation.html">Presentation</a></h2>
+        </ul>
+    <!-- </div>     -->
     </body>
 </html>

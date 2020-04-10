@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AASA,AATA,MASM,CATG;EACL,WAAW,EAAE,UAAU;EACvB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EACjB,MAAM,EAAE,eAAe;EACvB,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,IAAI;CACf;;AAED,AAAA,MAAM,CAAC;EAEH,KAAK,EAAE,KAAK;CACf",
+    "sources": [
+        "InheP.scss"
+    ],
+    "names": [],
+    "file": "InheP.css"
+}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,GAAG,CAAC;EACA,WAAW,EAAE,IAAI;CAQpB;;AATD,AAGI,GAHD,CAGC,EAAE,CAAC;EACC,KAAK,EAAG,KAAK;CAChB;;AALL,AAMI,GAND,CAMC,EAAE,CAAA;EACE,KAAK,EAAC,KAAK;CACd",
+    "sources": [
+        "StudiesN.scss"
+    ],
+    "names": [],
+    "file": "StudiesN.css"
+}

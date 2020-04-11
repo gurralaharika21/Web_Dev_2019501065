@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,EAAE,CAAC;EACC,WAAW,EAAE,IAAI;EACjB,KAAK,EAJF,GAAG;CAKT;;AACD,AAAA,EAAE,CAAC;EACC,WAAW,EAAE,IAAI;EACjB,KAAK,EARF,GAAG;CAST",
+    "sources": [
+        "vari.scss"
+    ],
+    "names": [],
+    "file": "vari.css"
+}

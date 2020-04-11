@@ -3,7 +3,8 @@ div {
 }
 
 div ul {
-  color: green;
+  color: solid black;
+  font-size: 30px;
 }
 
 div h5 {

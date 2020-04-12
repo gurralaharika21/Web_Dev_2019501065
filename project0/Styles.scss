@@ -10,18 +10,24 @@ h2{
     /* height: 00 px; */
     margin : 3px;
 }
+h3{
+    color:yellow;
+}
 table {
-    border : 2px solid black;
+    border : 2px solid purple;
     border-collapse: collapse ;
     text-align : center;
     padding : 5px;
 }
 th,td {
-    border : 2px solid black;
+    border : 2px solid purple;
     font-family: 'Times New Roman', Times, serif;
     padding : 5px;
     
 
+}
+td{
+    color:white;
 }
 uo{
     color:white;

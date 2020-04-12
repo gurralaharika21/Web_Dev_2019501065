@@ -3,7 +3,11 @@ div {
 }
 
 div ul {
-  color: black;
+  color: white;
   font-size: 30px;
+}
+
+p {
+  color: white;
 }
 /*# sourceMappingURL=StudiesN.css.map */

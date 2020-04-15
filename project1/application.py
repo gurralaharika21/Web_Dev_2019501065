@@ -4,6 +4,7 @@ from flask import Flask, session
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -24,3 +25,7 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.route("/")
 def index():
     return "Project 1: TODO"
+@app.route("/register", methods = ["GET","POST"])
+def register():
+    
+    return render_template("register.html")

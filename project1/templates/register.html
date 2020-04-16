@@ -58,7 +58,7 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .registerbtn:hover {
-  opacity: 0.1;
+  opacity: 0.9;
 }
 
 
@@ -67,10 +67,12 @@ input[type=text]:focus, input[type=password]:focus {
 </head>
 <body>
 
-<form action="/register">
+  <form  action ="{{url_for('register')}}", method = "POST">
   <div class="container">
     <h1>Register</h1>
+    
     <p>Create your account please</p>
+    
 
     <label for="name"><b>First Name</b></label>
     <input type="text" placeholder="Enter your name" name="name" required>
@@ -82,11 +84,13 @@ input[type=text]:focus, input[type=password]:focus {
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
     <button type="submit" class="registerbtn">Register</button>
-    <button type="submit" class="registerbtn">Login</button>
+    <button type="submit"  class="registerbtn">Login</button>
+
   </div>
+</form>
   
  
-</form>
+
 
 </body>
 </html>

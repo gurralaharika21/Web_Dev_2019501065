@@ -1,10 +1,16 @@
 import os
+from models import *
+import datetime
 
-from flask import Flask, session
+from flask import Flask, session,redirect,request,render_template
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from flask import render_template,request
+
+import hashlib
+
+# from model import Users,db
+
 
 app = Flask(__name__)
 
@@ -15,29 +21,63 @@ if not os.getenv("DATABASE_URL"):
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 Session(app)
+db.init_app(app)
+
 
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
+session = db()
 
 
-@app.route("/")
-def index():
-    return "Project 1: TODO"
+# def main():
+#     db.create_all()
 
-@app.route("/register", methods = ["POST","GET"])   
+
+# @app.route("/")
+# def index():
+#     return "Project 1: TODO"
+
+@app.route("/", methods = ["POST","GET"])   
 def register():
+    # db.create_all()
     if request.method == "POST":
+ 
         # result = request.form
         name = request.form.get("name")
+        
         email = request.form.get("email")
-        psw = request.form.get("psw")
+        password = request.form.get("psw")
+        timestamp = datetime.datetime.now()
         print("name : ", name)
         print("email : ", email)
-        
-        return render_template("result.html", name = name)
+        print("password : ", hashlib.md5(password.encode()).hexdigest())
+        print(timestamp)
+ 
+        new_users = Users(name = name,email = email,password = hashlib.md5(password.encode()).hexdigest(),timestamp=timestamp)
+        try:
+            session.add(new_users)
+            print(new_users)
+            session.commit()
+            # name = name
+            print("commit completed")
+            return render_template("result.html",name = name)
+        except:
+            
+            return render_template("error.html")
     else:
-        return render_template("register.html")    
+        return render_template("register.html")            
+
+       
+        
+
+
+@app.route("/admin", methods = ["GET"])
+def users_info():
+    # data = Users.query.all()
+    data = db.query(Users)
+    return render_template("users.html",data = data)        
 
        

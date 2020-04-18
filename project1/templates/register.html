@@ -23,16 +23,16 @@ body {
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=email],input[type=text], input[type=password] {
   width: 100%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 0 22px 2px;
   display: inline-block;
   border: none;
-  background:paleturquoise;
+  background:rgb(51, 185, 151);
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=email]:focus,input[type=text]:focus, input[type=password]:focus {
   background-color: grey;
   outline: none;
 }
@@ -78,17 +78,18 @@ input[type=text]:focus, input[type=password]:focus {
     <input type="text" placeholder="Enter your name" name="name" required>
 
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter your Email" name="email" required>
+    <label for="email"><b>Email</b></label> 
+    <input type="email" placeholder="Enter your Email" name="email" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
     <button type="submit" class="registerbtn">Register</button>
-    <button type="submit"  class="registerbtn">Login</button>
+   <p>Already have an account?,then LOGIN</p> <button type="submit"  class="registerbtn">Login</button>
 
   </div>
 </form>
-  
+
+
  
 
 

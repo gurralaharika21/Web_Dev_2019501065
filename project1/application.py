@@ -1,8 +1,10 @@
-import os
+import os,sys,logging,time
 from models import *
 import datetime
+from flask import escape, session
 
-from flask import Flask, session,redirect,request,render_template
+
+from flask import Flask, session,redirect,request,render_template,url_for
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -29,7 +31,7 @@ db.init_app(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
-session = db()
+sess = db()
 
 
 # def main():
@@ -47,26 +49,22 @@ def register():
  
         # result = request.form
         name = request.form.get("name")
-        
         email = request.form.get("email")
         password = request.form.get("psw")
         timestamp = datetime.datetime.now()
-        print("name : ", name)
-        print("email : ", email)
-        print("password : ", hashlib.md5(password.encode()).hexdigest())
-        print(timestamp)
- 
         new_users = Users(name = name,email = email,password = hashlib.md5(password.encode()).hexdigest(),timestamp=timestamp)
+        # password = hashlib.md5(password.encode()).hexdigest()
         try:
-            session.add(new_users)
+            sess.add(new_users)
             print(new_users)
-            session.commit()
+            sess.commit()
             # name = name
-            print("commit completed")
+            # print("commit completed")
             return render_template("result.html",name = name)
         except:
-            
-            return render_template("error.html")
+
+            text ="Account already exists!please try again with new account or login"
+            return render_template("error.html",text = text)
     else:
         return render_template("register.html")            
 
@@ -78,6 +76,24 @@ def register():
 def users_info():
     # data = Users.query.all()
     data = db.query(Users)
-    return render_template("users.html",data = data)        
+    return render_template("users.html",data = data)       
 
-       
+    #  Authentication
+@app.route("/auth",methods=["POST"])    
+def authentication():
+    email = request.form['email']
+    password = request.form['psw']
+    pswd = hashlib.md5(password.encode()).hexdigest()
+    data = db.query(Users).filter_by(email=email)
+    if data[0].email == email and data[0].password == pswd:
+        session["email"] = data[0].email
+        session["password"] = data[0].password
+        return render_template("home.html",text = "welcome to Goodreads!!")
+    return render_template("register.html",text = "email or password is incorrect")    
+
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")

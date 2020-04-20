@@ -33,5 +33,5 @@ class Book(db.Model):
         self.author = author
         self.year = year    
 
-    def __repr__(self):
-        retyrn self.title    
+    # def __repr__(self):
+    #     return self.title    

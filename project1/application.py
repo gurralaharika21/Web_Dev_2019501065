@@ -42,7 +42,7 @@ sess = db()
 # def index():
 #     return "Project 1: TODO"
 
-@app.route("/", methods = ["POST","GET"])   
+@app.route("/register", methods = ["POST","GET"])   
 def register():
     # db.create_all()
     if request.method == "POST":
@@ -53,7 +53,7 @@ def register():
         password = request.form.get("psw")
         timestamp = datetime.datetime.now()
         new_users = Users(name = name,email = email,password = hashlib.md5(password.encode()).hexdigest(),timestamp=timestamp)
-        # password = hashlib.md5(password.encode()).hexdigest()
+        
         try:
             sess.add(new_users)
             print(new_users)
@@ -76,7 +76,15 @@ def register():
 def users_info():
     # data = Users.query.all()
     data = db.query(Users)
-    return render_template("users.html",data = data)       
+    return render_template("users.html",data = data)     
+@app.route("/")
+def index():
+    if request.method == "GET":
+        if session.get("email") is not None:
+            return render_template("home.html",text= session['email'])
+        return redirect(url_for("register"))  
+
+
 
     #  Authentication
 @app.route("/auth",methods=["POST"])    
@@ -87,12 +95,18 @@ def authentication():
     data = db.query(Users).filter_by(email=email)
     if data[0].email == email and data[0].password == pswd:
         session["email"] = data[0].email
-        session["password"] = data[0].password
+        # session["password"] = data[0].password
         return render_template("home.html",text = "welcome to Goodreads!!")
     return render_template("register.html",text = "email or password is incorrect")    
 
-
-
+@app.route("/home")
+def home():
+    try:
+        user = session['email']
+        return render_template("home.html")     
+    except:
+        text = "you must first login to view the homepage"
+        return render_template("register.html",text = text)
 @app.route("/logout")
 def logout():
     session.clear()

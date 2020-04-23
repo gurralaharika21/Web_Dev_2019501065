@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <style>
+            table {
+                border:2px;
+                border-collapse: collapse;
+                /* background-color: black; */
+                padding:15px;
+            }
+            body {
+                background-color:rgb(0, 128, 100);
+            }
+            th,td {
+                padding:10px;
+                color:white;
+            }
+            th{
+                background-color: black;
+            }
+        </style>
+    </head>
+    <body style = "font-size: large;">
+    <h1 style = "text-align: center;">Results of search</h1><br>
+    <table border = 1 align = "center">
+        <tr>
+        <th> {{"isbn"}}</th>
+        <th>{{"title"}}</th>
+        <th>{{author}}</th>
+        <th>{{"year"}}</th>
+        </tr>
+        {% for item in query %}
+         <tr>
+             <td><a href =""> {{item.isbn}}</a></td>
+             <td> {{item.title}}</td>
+             <td> {{item.author}}</td>
+             <td> {{item.year}}</td>
+            </tr>
+         {% endfor %}   
+    </table>
+    </body>
+</html>

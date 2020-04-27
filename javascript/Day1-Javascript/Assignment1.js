@@ -13,10 +13,7 @@ function countBs(str1) {
     console.log(count)
     // return count
     }
-    
-
 countBs(str)    
-
 function countChar(string,letter) {
     count = 0;
     letter = 'h'

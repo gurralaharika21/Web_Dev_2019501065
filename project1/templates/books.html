@@ -10,34 +10,43 @@
                 padding:15px;
             }
             body {
-                background-color:rgb(0, 128, 100);
+                background-color:teal;
             }
             th,td {
                 padding:10px;
                 color:white;
             }
             th{
-                background-color: black;
+                background-color: paleturquoise;
+            }
+            a{
+                color:white;
             }
         </style>
     </head>
     <body style = "font-size: large;">
     <h1 style = "text-align: center;">Results of search</h1><br>
-    <table border = 1 align = "center">
-        <tr>
-        <th> {{"isbn"}}</th>
-        <th>{{"title"}}</th>
-        <th>{{author}}</th>
-        <th>{{"year"}}</th>
-        </tr>
-        {% for item in query %}
-         <tr>
-             <td><a href =""> {{item.isbn}}</a></td>
-             <td> {{item.title}}</td>
-             <td> {{item.author}}</td>
-             <td> {{item.year}}</td>
+    <table class="table" style="width: 100%;">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>isbn</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
             </tr>
-         {% endfor %}   
+        </thead>
+        <tbody>
+            {% for i in range(0, length) %}
+              <tr>
+                  <th scope="row">{{  i+1 }}</th>
+                  <td><a href="#">{{ isbn[i] }}</a></td>
+                  <td><a href='#'>{{ title[i] }}</a></td>
+                  <td>{{ author[i] }}</td>
+                  <td>{{ year[i] }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
     </table>
     </body>
 </html>

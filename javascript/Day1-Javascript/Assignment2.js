@@ -50,6 +50,7 @@ const o3 = {
 }
 
 
+
 console.log(deepEqual(o,o2))
 console.log(deepEqual(obj1,obj2))
 console.log(deepEqual(str11,str21))

@@ -13,6 +13,7 @@ function countBs(str1) {
     console.log(count)
     // return count
     }
+    
 
 countBs(str)    
 

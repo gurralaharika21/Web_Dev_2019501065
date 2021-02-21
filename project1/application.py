@@ -96,8 +96,76 @@ def authentication():
     if data[0].email == email and data[0].password == pswd:
         session["email"] = data[0].email
         # session["password"] = data[0].password
-        return render_template("home.html",text = "welcome to Goodreads!!")
-    return render_template("register.html",text = "email or password is incorrect")    
+        return render_template("home.html")
+    return render_template("register.html",text = "email or password is incorrect")  
+
+# @app.route("/search",methods = ["GET","POST"])
+# def search():
+#     print("im searching")
+#     if request.method == "POST":
+#         print("hey")
+#         word = request.form['searchbox']
+#         choice = request.form['choice']
+#         if choice == 'isbn':
+#             # query = Book.query.filter(Book.isbn.like(f'%{word}%'))
+#             query = db.query(Book).filter(Book.isbn.like(f'%{word}%'))
+#             print(query)
+#         elif choice == 'title':
+#             print(word)
+#             # query = Book.query.filter(Book.title.like(f'%{word}%'))
+#             query = db.query(Book).filter(Book.title.like(f'%{word}%'))
+#         else:
+#             print(word)
+#                 # query = Book.query.filter(Book.author.like(f'%{word}%')) 
+#             query = db.query(Book).filter(Book.author.like(f'%{word}%'))
+                
+#         isbn=[]
+#         title=[]
+#         author=[]
+#         year=[]
+#         for row in query:
+#             isbn.append(row.isbn)
+#             title.append(row.title)
+#             author.append(row.author)
+#             year.append(row.year)
+#         return render_template("books.html",isbn=isbn,title=title,author=author,year=year,length=len(isbn))
+#     else:
+#         return render_template("home.html",text = "No matches found")        
+@app.route("/search", methods=["GET","POST"])
+def search():
+    
+    if request.method == "POST":
+        word = request.form['searchbox']
+        choice = request.form['choice']
+        if choice == "isbn":
+            
+            query = db.query(Book).filter(Book.isbn.like(f'%{word}%'))
+        elif choice == "title":
+            
+            query = db.query(Book).filter(Book.title.like(f'%{word}%'))
+        else:
+            
+            query = db.query(Book).filter(Book.author.like(f'%{word}%'))
+        
+        isbn = []
+        title=[]
+        author = []
+        year = []
+        for row in query:
+            isbn.append(row.isbn)
+            title.append(row.title)
+            author.append(row.author)
+            year.append(row.year)
+            
+        if len(isbn)==0:
+            return render_template("home.html",text = "No Matches Found")    
+        return render_template("books.html", isbn=isbn,title=title,author=author,year=year,length=len(isbn))
+        
+    elif request.method == "GET":
+        return render_template("register.html",text="")
+
+
+
 
 @app.route("/home")
 def home():
@@ -107,7 +175,8 @@ def home():
     except:
         text = "you must first login to view the homepage"
         return render_template("register.html",text = text)
+        
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
+    return redirect("/register")
